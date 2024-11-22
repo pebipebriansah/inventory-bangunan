@@ -3,34 +3,25 @@
 namespace App\Database\Seeds;
 
 use CodeIgniter\Database\Seeder;
+use Faker\Factory;
 
 class TblBarangSeeder extends Seeder
 {
     public function run()
     {
-        $data = [
-            [
-                'id_barang'   => 'BRG001',
-                'nama_barang' => 'Laptop',
-                'stok'        => '50',
-                'harga'       => '15000000',
-                'id_supplier' => 'SUP001',
-            ],
-            [
-                'id_barang'   => 'BRG002',
-                'nama_barang' => 'Smartphone',
-                'stok'        => '200',
-                'harga'       => '5000000',
-                'id_supplier' => 'SUP002',
-            ],
-            [
-                'id_barang'   => 'BRG003',
-                'nama_barang' => 'Keyboard',
-                'stok'        => '100',
-                'harga'       => '250000',
-                'id_supplier' => 'SUP001',
-            ],
-        ];
+        $faker = Factory::create();
+
+        // Prepare data
+        $data = [];
+        for ($i = 0; $i < 1000; $i++) {
+            $data[] = [
+                'id_barang'   => 'BRG-' . str_pad($i + 1, 3, '0', STR_PAD_LEFT),
+                'nama_barang' => $faker->words(3, true), // Generate a random 3-word name
+                'stok'        => $faker->numberBetween(10, 100), // Random stock between 10 and 100
+                'harga'       => $faker->numberBetween(10000, 100000), // Random price between 10,000 and 100,000
+                'id_supplier' => 'SUP-' . str_pad($faker->numberBetween(1, 3), 3, '0', STR_PAD_LEFT),
+            ];
+        }
 
         // Insert data into the database
         $this->db->table('tbl_barang')->insertBatch($data);

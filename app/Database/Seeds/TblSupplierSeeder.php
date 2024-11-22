@@ -10,7 +10,7 @@ class TblSupplierSeeder extends Seeder
     {
         $data = [
             [
-                'id_supplier'  => 'SUP001',
+                'id_supplier'  => 'SUP-001',
                 'nama_supplier'=> 'Supplier A',
                 'alamat'       => 'Jl. Merdeka No.1, Jakarta',
                 'username'     => 'supplierA',
@@ -18,7 +18,7 @@ class TblSupplierSeeder extends Seeder
                 'kategori'     => 'Elektronik',
             ],
             [
-                'id_supplier'  => 'SUP002',
+                'id_supplier'  => 'SUP-002',
                 'nama_supplier'=> 'Supplier B',
                 'alamat'       => 'Jl. Sudirman No.10, Bandung',
                 'username'     => 'supplierB',
@@ -26,7 +26,7 @@ class TblSupplierSeeder extends Seeder
                 'kategori'     => 'Peralatan Rumah Tangga',
             ],
             [
-                'id_supplier'  => 'SUP003',
+                'id_supplier'  => 'SUP-003',
                 'nama_supplier'=> 'Supplier C',
                 'alamat'       => 'Jl. Gajah Mada No.5, Surabaya',
                 'username'     => 'supplierC',
