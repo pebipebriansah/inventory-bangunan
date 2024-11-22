@@ -1,0 +1,950 @@
+INFO - 2024-11-19 02:58:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 02:58:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 02:58:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 02:58:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:00:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:00:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:00:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:00:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-11-19 03:00:20 --> mysqli_sql_exception: Column 'id_supplier' in where clause is ambiguous in D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT *\nFROM `...', 0)
+#1 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#6 D:\JOKI\CI-4\inventory-bangunan\app\Controllers\Supplier\PesananController.php(19): CodeIgniter\BaseModel->findAll()
+#7 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\CodeIgniter.php(933): App\Controllers\Supplier\PesananController->index()
+#8 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Supplier\PesananController))
+#9 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#11 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 D:\JOKI\CI-4\inventory-bangunan\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\in...')
+#14 {main}
+CRITICAL - 2024-11-19 03:00:20 --> CodeIgniter\Database\Exceptions\DatabaseException: Column 'id_supplier' in where clause is ambiguous
+[Method: GET, Route: supplier/data-pesanan]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tbl_pesanan`
+JOIN `tbl_supplier` ON `tbl_supplier`.`id_supplier` = `tbl_pesanan`.`id_supplier`
+WHERE `id_supplier` = :id_supplier:', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\Supplier\PesananController.php(19): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Supplier\PesananController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Supplier\PesananController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+CRITICAL - 2024-11-19 03:00:20 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Column 'id_supplier' in where clause is ambiguous
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `tbl_pesanan`
+JOIN `tbl_supplier` ON `tbl_supplier`.`id_supplier` = `tbl_pesanan`.`id_supplier`
+WHERE `id_supplier` = \'SUP-001\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `tbl_pesanan`
+JOIN `tbl_supplier` ON `tbl_supplier`.`id_supplier` = `tbl_pesanan`.`id_supplier`
+WHERE `id_supplier` = \'SUP-001\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tbl_pesanan`
+JOIN `tbl_supplier` ON `tbl_supplier`.`id_supplier` = `tbl_pesanan`.`id_supplier`
+WHERE `id_supplier` = :id_supplier:', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\Supplier\PesananController.php(19): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Supplier\PesananController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Supplier\PesananController))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+CRITICAL - 2024-11-19 03:00:20 --> [Caused by] mysqli_sql_exception: Column 'id_supplier' in where clause is ambiguous
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT *
+FROM `tbl_pesanan`
+JOIN `tbl_supplier` ON `tbl_supplier`.`id_supplier` = `tbl_pesanan`.`id_supplier`
+WHERE `id_supplier` = \'SUP-001\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `tbl_pesanan`
+JOIN `tbl_supplier` ON `tbl_supplier`.`id_supplier` = `tbl_pesanan`.`id_supplier`
+WHERE `id_supplier` = \'SUP-001\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `tbl_pesanan`
+JOIN `tbl_supplier` ON `tbl_supplier`.`id_supplier` = `tbl_pesanan`.`id_supplier`
+WHERE `id_supplier` = \'SUP-001\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tbl_pesanan`
+JOIN `tbl_supplier` ON `tbl_supplier`.`id_supplier` = `tbl_pesanan`.`id_supplier`
+WHERE `id_supplier` = :id_supplier:', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\Supplier\PesananController.php(19): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Supplier\PesananController->index()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Supplier\PesananController))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 03:02:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:05:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:06:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:06:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:06:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:06:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:06:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:06:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:06:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:09:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:09:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:10:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:14:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:15:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:16:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:16:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:16:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:18:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:19:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:19:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:19:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:19:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:23:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:29:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:29:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:30:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:37:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:37:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:37:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:39:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:39:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:39:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:39:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:39:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:53:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 03:53:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 05:06:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 05:07:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 05:07:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 05:08:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 05:08:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 05:08:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 05:20:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 05:20:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 05:20:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 05:22:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 05:34:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 05:34:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 05:34:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:08:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:08:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:09:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:09:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:09:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:09:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:09:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:09:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:09:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:09:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:09:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-11-19 06:09:33 --> ErrorException: Undefined array key "stok"
+[Method: POST, Route: admin/data-pesanan/masuk/PSN-002]
+in APPPATH\Controllers\Admin\PesananController.php on line 108.
+ 1 APPPATH\Controllers\Admin\PesananController.php(108): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "stok"', 'D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Controllers\\Admin\\PesananController.php', 108)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\PesananController->masuk('PSN-002')
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PesananController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 06:10:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:10:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-11-19 06:10:54 --> ErrorException: Undefined array key "stok"
+[Method: POST, Route: admin/data-pesanan/masuk/PSN-002]
+in APPPATH\Controllers\Admin\PesananController.php on line 108.
+ 1 APPPATH\Controllers\Admin\PesananController.php(108): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "stok"', 'D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Controllers\\Admin\\PesananController.php', 108)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\PesananController->masuk('PSN-002')
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PesananController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 06:12:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:12:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:12:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:12:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:12:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:14:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:14:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:14:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:14:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:14:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:14:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:15:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:15:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:15:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:15:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:15:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:15:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-11-19 06:15:47 --> ParseError: Unclosed '{' does not match ')'
+[Method: GET, Route: admin/data-pesanan]
+in APPPATH\Controllers\Admin\PesananController.php on line 107.
+ 1 VENDORPATH\composer\ClassLoader.php(427): Composer\Autoload\{closure}('D:\\JOKI\\CI-4\\inventory-bangunan\\vendor\\composer/../../app\\Controllers\\Admin\\PesananController.php')
+ 2 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Controllers\\Admin\\PesananController')
+ 3 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\Admin\\PesananController', true)
+ 4 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 06:15:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-11-19 06:15:49 --> ParseError: Unclosed '{' does not match ')'
+[Method: GET, Route: admin/data-pesanan]
+in APPPATH\Controllers\Admin\PesananController.php on line 107.
+ 1 VENDORPATH\composer\ClassLoader.php(427): Composer\Autoload\{closure}('D:\\JOKI\\CI-4\\inventory-bangunan\\vendor\\composer/../../app\\Controllers\\Admin\\PesananController.php')
+ 2 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Controllers\\Admin\\PesananController')
+ 3 SYSTEMPATH\CodeIgniter.php(887): class_exists('\\App\\Controllers\\Admin\\PesananController', true)
+ 4 SYSTEMPATH\CodeIgniter.php(496): CodeIgniter\CodeIgniter->startController()
+ 5 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 06:15:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:16:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:16:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:16:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:16:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:16:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:16:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:16:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:16:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:16:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:16:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:16:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:16:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:16:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:16:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:16:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:16:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:16:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:16:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:16:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:16:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:16:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:16:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:16:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:17:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:17:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:17:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:17:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:17:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:17:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:17:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-11-19 06:17:29 --> ErrorException: Undefined array key "stok"
+[Method: POST, Route: admin/data-pesanan/masuk/PSN-003]
+in APPPATH\Controllers\Admin\PesananController.php on line 108.
+ 1 APPPATH\Controllers\Admin\PesananController.php(108): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "stok"', 'D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Controllers\\Admin\\PesananController.php', 108)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\PesananController->masuk('PSN-003')
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PesananController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 06:28:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-11-19 06:28:16 --> ErrorException: Undefined array key "stok"
+[Method: POST, Route: admin/data-pesanan/masuk/PSN-003]
+in APPPATH\Controllers\Admin\PesananController.php on line 108.
+ 1 APPPATH\Controllers\Admin\PesananController.php(108): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "stok"', 'D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Controllers\\Admin\\PesananController.php', 108)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\PesananController->masuk('PSN-003')
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PesananController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 06:28:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:28:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:28:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-11-19 06:28:23 --> ErrorException: Undefined array key "stok"
+[Method: POST, Route: admin/data-pesanan/masuk/PSN-003]
+in APPPATH\Controllers\Admin\PesananController.php on line 108.
+ 1 APPPATH\Controllers\Admin\PesananController.php(108): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "stok"', 'D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Controllers\\Admin\\PesananController.php', 108)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\PesananController->masuk('PSN-003')
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PesananController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 06:28:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-11-19 06:28:41 --> ErrorException: Undefined array key "stok"
+[Method: POST, Route: admin/data-pesanan/masuk/PSN-003]
+in APPPATH\Controllers\Admin\PesananController.php on line 107.
+ 1 APPPATH\Controllers\Admin\PesananController.php(107): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "stok"', 'D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Controllers\\Admin\\PesananController.php', 107)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\PesananController->masuk('PSN-003')
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PesananController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 06:28:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:28:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:28:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-11-19 06:28:47 --> ErrorException: Undefined array key "stok"
+[Method: POST, Route: admin/data-pesanan/masuk/PSN-003]
+in APPPATH\Controllers\Admin\PesananController.php on line 107.
+ 1 APPPATH\Controllers\Admin\PesananController.php(107): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "stok"', 'D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Controllers\\Admin\\PesananController.php', 107)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\PesananController->masuk('PSN-003')
+ 3 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PesananController))
+ 4 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 06:29:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:29:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:30:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:30:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:34:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:34:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:34:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:34:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:41:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:41:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:41:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:41:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:42:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:42:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:43:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:43:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:43:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:43:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:44:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:44:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:44:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:44:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:44:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:44:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:44:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:45:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:45:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:45:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:45:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:45:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:45:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:45:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:45:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:45:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:45:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:45:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:45:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:45:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:45:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:45:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:45:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:45:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:45:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:45:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:45:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:46:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:46:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:46:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:46:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 06:46:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 07:00:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 07:00:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 07:00:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 07:00:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 07:00:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:24:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:25:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:31:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:31:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:31:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-11-19 08:31:55 --> ErrorException: Undefined array key "id_barang"
+[Method: GET, Route: admin/barang-masuk]
+in APPPATH\Views\pages\admin\data-barang-masuk.php on line 59.
+ 1 APPPATH\Views\pages\admin\data-barang-masuk.php(59): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id_barang"', 'D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\data-barang-masuk.php', 59)
+ 2 SYSTEMPATH\View\View.php(234): include('D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\data-barang-masuk.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('pages/admin/data-barang-masuk', [], true)
+ 5 APPPATH\Controllers\Admin\BarangMasukController.php(21): view('pages/admin/data-barang-masuk', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\BarangMasukController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\BarangMasukController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 08:35:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-11-19 08:35:11 --> ErrorException: Undefined array key "id_barang"
+[Method: GET, Route: admin/barang-masuk]
+in APPPATH\Views\pages\admin\data-barang-masuk.php on line 59.
+ 1 APPPATH\Views\pages\admin\data-barang-masuk.php(59): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id_barang"', 'D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\data-barang-masuk.php', 59)
+ 2 SYSTEMPATH\View\View.php(234): include('D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\data-barang-masuk.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('pages/admin/data-barang-masuk', [], true)
+ 5 APPPATH\Controllers\Admin\BarangMasukController.php(22): view('pages/admin/data-barang-masuk', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\BarangMasukController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\BarangMasukController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 08:35:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-11-19 08:35:13 --> ErrorException: Undefined array key "id_barang"
+[Method: GET, Route: admin/barang-masuk]
+in APPPATH\Views\pages\admin\data-barang-masuk.php on line 59.
+ 1 APPPATH\Views\pages\admin\data-barang-masuk.php(59): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id_barang"', 'D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\data-barang-masuk.php', 59)
+ 2 SYSTEMPATH\View\View.php(234): include('D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\data-barang-masuk.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('pages/admin/data-barang-masuk', [], true)
+ 5 APPPATH\Controllers\Admin\BarangMasukController.php(22): view('pages/admin/data-barang-masuk', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\BarangMasukController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\BarangMasukController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 08:35:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-11-19 08:35:14 --> ErrorException: Undefined array key "id_barang"
+[Method: GET, Route: admin/barang-masuk]
+in APPPATH\Views\pages\admin\data-barang-masuk.php on line 59.
+ 1 APPPATH\Views\pages\admin\data-barang-masuk.php(59): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id_barang"', 'D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\data-barang-masuk.php', 59)
+ 2 SYSTEMPATH\View\View.php(234): include('D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\data-barang-masuk.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('pages/admin/data-barang-masuk', [], true)
+ 5 APPPATH\Controllers\Admin\BarangMasukController.php(22): view('pages/admin/data-barang-masuk', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\BarangMasukController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\BarangMasukController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 08:35:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-11-19 08:35:14 --> ErrorException: Undefined array key "id_barang"
+[Method: GET, Route: admin/barang-masuk]
+in APPPATH\Views\pages\admin\data-barang-masuk.php on line 59.
+ 1 APPPATH\Views\pages\admin\data-barang-masuk.php(59): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id_barang"', 'D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\data-barang-masuk.php', 59)
+ 2 SYSTEMPATH\View\View.php(234): include('D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\data-barang-masuk.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('pages/admin/data-barang-masuk', [], true)
+ 5 APPPATH\Controllers\Admin\BarangMasukController.php(22): view('pages/admin/data-barang-masuk', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\BarangMasukController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\BarangMasukController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 08:35:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-11-19 08:35:14 --> ErrorException: Undefined array key "id_barang"
+[Method: GET, Route: admin/barang-masuk]
+in APPPATH\Views\pages\admin\data-barang-masuk.php on line 59.
+ 1 APPPATH\Views\pages\admin\data-barang-masuk.php(59): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id_barang"', 'D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\data-barang-masuk.php', 59)
+ 2 SYSTEMPATH\View\View.php(234): include('D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\data-barang-masuk.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('pages/admin/data-barang-masuk', [], true)
+ 5 APPPATH\Controllers\Admin\BarangMasukController.php(22): view('pages/admin/data-barang-masuk', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\BarangMasukController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\BarangMasukController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 08:35:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-11-19 08:35:14 --> ErrorException: Undefined array key "id_barang"
+[Method: GET, Route: admin/barang-masuk]
+in APPPATH\Views\pages\admin\data-barang-masuk.php on line 59.
+ 1 APPPATH\Views\pages\admin\data-barang-masuk.php(59): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id_barang"', 'D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\data-barang-masuk.php', 59)
+ 2 SYSTEMPATH\View\View.php(234): include('D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\data-barang-masuk.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('pages/admin/data-barang-masuk', [], true)
+ 5 APPPATH\Controllers\Admin\BarangMasukController.php(22): view('pages/admin/data-barang-masuk', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\BarangMasukController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\BarangMasukController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 08:37:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:38:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:38:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-11-19 08:38:20 --> ErrorException: Undefined array key "nama_supplier"
+[Method: GET, Route: admin/barang-masuk]
+in APPPATH\Views\pages\admin\data-barang-masuk.php on line 63.
+ 1 APPPATH\Views\pages\admin\data-barang-masuk.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nama_supplier"', 'D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\data-barang-masuk.php', 63)
+ 2 SYSTEMPATH\View\View.php(234): include('D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\data-barang-masuk.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('pages/admin/data-barang-masuk', [], true)
+ 5 APPPATH\Controllers\Admin\BarangMasukController.php(22): view('pages/admin/data-barang-masuk', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\BarangMasukController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\BarangMasukController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 08:38:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-11-19 08:38:21 --> ErrorException: Undefined array key "nama_supplier"
+[Method: GET, Route: admin/barang-masuk]
+in APPPATH\Views\pages\admin\data-barang-masuk.php on line 63.
+ 1 APPPATH\Views\pages\admin\data-barang-masuk.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nama_supplier"', 'D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\data-barang-masuk.php', 63)
+ 2 SYSTEMPATH\View\View.php(234): include('D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\data-barang-masuk.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('pages/admin/data-barang-masuk', [], true)
+ 5 APPPATH\Controllers\Admin\BarangMasukController.php(22): view('pages/admin/data-barang-masuk', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\BarangMasukController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\BarangMasukController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 08:40:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-11-19 08:40:20 --> mysqli_sql_exception: Unknown column 'barang.nama_barang' in 'field list' in D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT `tbl_bar...', 0)
+#1 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tbl_bar...')
+#2 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tbl_bar...')
+#3 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `tbl_bar...', Array, false)
+#4 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#6 D:\JOKI\CI-4\inventory-bangunan\app\Controllers\Admin\BarangMasukController.php(25): CodeIgniter\BaseModel->findAll()
+#7 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\CodeIgniter.php(933): App\Controllers\Admin\BarangMasukController->index()
+#8 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\BarangMasukController))
+#9 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#11 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 D:\JOKI\CI-4\inventory-bangunan\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\in...')
+#14 {main}
+CRITICAL - 2024-11-19 08:40:20 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'barang.nama_barang' in 'field list'
+[Method: GET, Route: admin/barang-masuk]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `tbl_barang_masuk`.*, `tbl_pesanan`.*, `barang`.`nama_barang`, `supplier`.`nama_supplier`
+FROM `tbl_barang_masuk`
+JOIN `tbl_pesanan` ON `tbl_barang_masuk`.`id_pesanan` = `tbl_pesanan`.`id_pesanan`
+JOIN `tbl_barang` ON `tbl_pesanan`.`id_barang` = `tbl_barang`.`id_barang`
+JOIN `tbl_supplier` ON `tbl_pesanan`.`id_supplier` = `tbl_supplier`.`id_supplier`', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\Admin\BarangMasukController.php(25): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\BarangMasukController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\BarangMasukController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+CRITICAL - 2024-11-19 08:40:20 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'barang.nama_barang' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tbl_barang_masuk`.*, `tbl_pesanan`.*, `barang`.`nama_barang`, `supplier`.`nama_supplier`
+FROM `tbl_barang_masuk`
+JOIN `tbl_pesanan` ON `tbl_barang_masuk`.`id_pesanan` = `tbl_pesanan`.`id_pesanan`
+JOIN `tbl_barang` ON `tbl_pesanan`.`id_barang` = `tbl_barang`.`id_barang`
+JOIN `tbl_supplier` ON `tbl_pesanan`.`id_supplier` = `tbl_supplier`.`id_supplier`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tbl_barang_masuk`.*, `tbl_pesanan`.*, `barang`.`nama_barang`, `supplier`.`nama_supplier`
+FROM `tbl_barang_masuk`
+JOIN `tbl_pesanan` ON `tbl_barang_masuk`.`id_pesanan` = `tbl_pesanan`.`id_pesanan`
+JOIN `tbl_barang` ON `tbl_pesanan`.`id_barang` = `tbl_barang`.`id_barang`
+JOIN `tbl_supplier` ON `tbl_pesanan`.`id_supplier` = `tbl_supplier`.`id_supplier`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `tbl_barang_masuk`.*, `tbl_pesanan`.*, `barang`.`nama_barang`, `supplier`.`nama_supplier`
+FROM `tbl_barang_masuk`
+JOIN `tbl_pesanan` ON `tbl_barang_masuk`.`id_pesanan` = `tbl_pesanan`.`id_pesanan`
+JOIN `tbl_barang` ON `tbl_pesanan`.`id_barang` = `tbl_barang`.`id_barang`
+JOIN `tbl_supplier` ON `tbl_pesanan`.`id_supplier` = `tbl_supplier`.`id_supplier`', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\Admin\BarangMasukController.php(25): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\BarangMasukController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\BarangMasukController))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+CRITICAL - 2024-11-19 08:40:20 --> [Caused by] mysqli_sql_exception: Unknown column 'barang.nama_barang' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT `tbl_barang_masuk`.*, `tbl_pesanan`.*, `barang`.`nama_barang`, `supplier`.`nama_supplier`
+FROM `tbl_barang_masuk`
+JOIN `tbl_pesanan` ON `tbl_barang_masuk`.`id_pesanan` = `tbl_pesanan`.`id_pesanan`
+JOIN `tbl_barang` ON `tbl_pesanan`.`id_barang` = `tbl_barang`.`id_barang`
+JOIN `tbl_supplier` ON `tbl_pesanan`.`id_supplier` = `tbl_supplier`.`id_supplier`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tbl_barang_masuk`.*, `tbl_pesanan`.*, `barang`.`nama_barang`, `supplier`.`nama_supplier`
+FROM `tbl_barang_masuk`
+JOIN `tbl_pesanan` ON `tbl_barang_masuk`.`id_pesanan` = `tbl_pesanan`.`id_pesanan`
+JOIN `tbl_barang` ON `tbl_pesanan`.`id_barang` = `tbl_barang`.`id_barang`
+JOIN `tbl_supplier` ON `tbl_pesanan`.`id_supplier` = `tbl_supplier`.`id_supplier`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tbl_barang_masuk`.*, `tbl_pesanan`.*, `barang`.`nama_barang`, `supplier`.`nama_supplier`
+FROM `tbl_barang_masuk`
+JOIN `tbl_pesanan` ON `tbl_barang_masuk`.`id_pesanan` = `tbl_pesanan`.`id_pesanan`
+JOIN `tbl_barang` ON `tbl_pesanan`.`id_barang` = `tbl_barang`.`id_barang`
+JOIN `tbl_supplier` ON `tbl_pesanan`.`id_supplier` = `tbl_supplier`.`id_supplier`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `tbl_barang_masuk`.*, `tbl_pesanan`.*, `barang`.`nama_barang`, `supplier`.`nama_supplier`
+FROM `tbl_barang_masuk`
+JOIN `tbl_pesanan` ON `tbl_barang_masuk`.`id_pesanan` = `tbl_pesanan`.`id_pesanan`
+JOIN `tbl_barang` ON `tbl_pesanan`.`id_barang` = `tbl_barang`.`id_barang`
+JOIN `tbl_supplier` ON `tbl_pesanan`.`id_supplier` = `tbl_supplier`.`id_supplier`', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\Admin\BarangMasukController.php(25): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\BarangMasukController->index()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\BarangMasukController))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 08:41:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-11-19 08:41:04 --> mysqli_sql_exception: Unknown column 'tbl_pesanan.id_barang' in 'on clause' in D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT `tbl_bar...', 0)
+#1 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tbl_bar...')
+#2 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tbl_bar...')
+#3 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `tbl_bar...', Array, false)
+#4 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#6 D:\JOKI\CI-4\inventory-bangunan\app\Controllers\Admin\BarangMasukController.php(25): CodeIgniter\BaseModel->findAll()
+#7 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\CodeIgniter.php(933): App\Controllers\Admin\BarangMasukController->index()
+#8 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\BarangMasukController))
+#9 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#11 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 D:\JOKI\CI-4\inventory-bangunan\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\in...')
+#14 {main}
+CRITICAL - 2024-11-19 08:41:04 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tbl_pesanan.id_barang' in 'on clause'
+[Method: GET, Route: admin/barang-masuk]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `tbl_barang_masuk`.*, `tbl_pesanan`.*, `tbl_barang`.`nama_barang`, `tbl_supplier`.`nama_supplier`
+FROM `tbl_barang_masuk`
+JOIN `tbl_pesanan` ON `tbl_barang_masuk`.`id_pesanan` = `tbl_pesanan`.`id_pesanan`
+JOIN `tbl_barang` ON `tbl_pesanan`.`id_barang` = `tbl_barang`.`id_barang`
+JOIN `tbl_supplier` ON `tbl_pesanan`.`id_supplier` = `tbl_supplier`.`id_supplier`', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\Admin\BarangMasukController.php(25): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\BarangMasukController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\BarangMasukController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+CRITICAL - 2024-11-19 08:41:04 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tbl_pesanan.id_barang' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tbl_barang_masuk`.*, `tbl_pesanan`.*, `tbl_barang`.`nama_barang`, `tbl_supplier`.`nama_supplier`
+FROM `tbl_barang_masuk`
+JOIN `tbl_pesanan` ON `tbl_barang_masuk`.`id_pesanan` = `tbl_pesanan`.`id_pesanan`
+JOIN `tbl_barang` ON `tbl_pesanan`.`id_barang` = `tbl_barang`.`id_barang`
+JOIN `tbl_supplier` ON `tbl_pesanan`.`id_supplier` = `tbl_supplier`.`id_supplier`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tbl_barang_masuk`.*, `tbl_pesanan`.*, `tbl_barang`.`nama_barang`, `tbl_supplier`.`nama_supplier`
+FROM `tbl_barang_masuk`
+JOIN `tbl_pesanan` ON `tbl_barang_masuk`.`id_pesanan` = `tbl_pesanan`.`id_pesanan`
+JOIN `tbl_barang` ON `tbl_pesanan`.`id_barang` = `tbl_barang`.`id_barang`
+JOIN `tbl_supplier` ON `tbl_pesanan`.`id_supplier` = `tbl_supplier`.`id_supplier`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `tbl_barang_masuk`.*, `tbl_pesanan`.*, `tbl_barang`.`nama_barang`, `tbl_supplier`.`nama_supplier`
+FROM `tbl_barang_masuk`
+JOIN `tbl_pesanan` ON `tbl_barang_masuk`.`id_pesanan` = `tbl_pesanan`.`id_pesanan`
+JOIN `tbl_barang` ON `tbl_pesanan`.`id_barang` = `tbl_barang`.`id_barang`
+JOIN `tbl_supplier` ON `tbl_pesanan`.`id_supplier` = `tbl_supplier`.`id_supplier`', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\Admin\BarangMasukController.php(25): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\BarangMasukController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\BarangMasukController))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+CRITICAL - 2024-11-19 08:41:04 --> [Caused by] mysqli_sql_exception: Unknown column 'tbl_pesanan.id_barang' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT `tbl_barang_masuk`.*, `tbl_pesanan`.*, `tbl_barang`.`nama_barang`, `tbl_supplier`.`nama_supplier`
+FROM `tbl_barang_masuk`
+JOIN `tbl_pesanan` ON `tbl_barang_masuk`.`id_pesanan` = `tbl_pesanan`.`id_pesanan`
+JOIN `tbl_barang` ON `tbl_pesanan`.`id_barang` = `tbl_barang`.`id_barang`
+JOIN `tbl_supplier` ON `tbl_pesanan`.`id_supplier` = `tbl_supplier`.`id_supplier`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tbl_barang_masuk`.*, `tbl_pesanan`.*, `tbl_barang`.`nama_barang`, `tbl_supplier`.`nama_supplier`
+FROM `tbl_barang_masuk`
+JOIN `tbl_pesanan` ON `tbl_barang_masuk`.`id_pesanan` = `tbl_pesanan`.`id_pesanan`
+JOIN `tbl_barang` ON `tbl_pesanan`.`id_barang` = `tbl_barang`.`id_barang`
+JOIN `tbl_supplier` ON `tbl_pesanan`.`id_supplier` = `tbl_supplier`.`id_supplier`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tbl_barang_masuk`.*, `tbl_pesanan`.*, `tbl_barang`.`nama_barang`, `tbl_supplier`.`nama_supplier`
+FROM `tbl_barang_masuk`
+JOIN `tbl_pesanan` ON `tbl_barang_masuk`.`id_pesanan` = `tbl_pesanan`.`id_pesanan`
+JOIN `tbl_barang` ON `tbl_pesanan`.`id_barang` = `tbl_barang`.`id_barang`
+JOIN `tbl_supplier` ON `tbl_pesanan`.`id_supplier` = `tbl_supplier`.`id_supplier`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `tbl_barang_masuk`.*, `tbl_pesanan`.*, `tbl_barang`.`nama_barang`, `tbl_supplier`.`nama_supplier`
+FROM `tbl_barang_masuk`
+JOIN `tbl_pesanan` ON `tbl_barang_masuk`.`id_pesanan` = `tbl_pesanan`.`id_pesanan`
+JOIN `tbl_barang` ON `tbl_pesanan`.`id_barang` = `tbl_barang`.`id_barang`
+JOIN `tbl_supplier` ON `tbl_pesanan`.`id_supplier` = `tbl_supplier`.`id_supplier`', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\Admin\BarangMasukController.php(25): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\BarangMasukController->index()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\BarangMasukController))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 08:41:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-11-19 08:41:31 --> mysqli_sql_exception: Unknown column 'tbl_barang.nama_barang' in 'field list' in D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:312
+Stack trace:
+#0 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(312): mysqli->query('SELECT `tbl_bar...', 0)
+#1 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tbl_bar...')
+#2 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tbl_bar...')
+#3 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `tbl_bar...', Array, false)
+#4 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#6 D:\JOKI\CI-4\inventory-bangunan\app\Controllers\Admin\BarangMasukController.php(24): CodeIgniter\BaseModel->findAll()
+#7 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\CodeIgniter.php(933): App\Controllers\Admin\BarangMasukController->index()
+#8 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\BarangMasukController))
+#9 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Boot.php(325): CodeIgniter\CodeIgniter->run()
+#11 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 D:\JOKI\CI-4\inventory-bangunan\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 D:\JOKI\CI-4\inventory-bangunan\vendor\codeigniter4\framework\system\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\in...')
+#14 {main}
+CRITICAL - 2024-11-19 08:41:31 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tbl_barang.nama_barang' in 'field list'
+[Method: GET, Route: admin/barang-masuk]
+in SYSTEMPATH\Database\BaseConnection.php on line 688.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `tbl_barang_masuk`.*, `tbl_pesanan`.*, `tbl_barang`.`nama_barang`, `tbl_supplier`.`nama_supplier`
+FROM `tbl_barang_masuk`
+JOIN `tbl_pesanan` ON `tbl_barang_masuk`.`id_pesanan` = `tbl_pesanan`.`id_pesanan`
+JOIN `tbl_supplier` ON `tbl_pesanan`.`id_supplier` = `tbl_supplier`.`id_supplier`', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\Admin\BarangMasukController.php(24): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\BarangMasukController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\BarangMasukController))
+ 7 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+CRITICAL - 2024-11-19 08:41:31 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'tbl_barang.nama_barang' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 317.
+ 1 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tbl_barang_masuk`.*, `tbl_pesanan`.*, `tbl_barang`.`nama_barang`, `tbl_supplier`.`nama_supplier`
+FROM `tbl_barang_masuk`
+JOIN `tbl_pesanan` ON `tbl_barang_masuk`.`id_pesanan` = `tbl_pesanan`.`id_pesanan`
+JOIN `tbl_supplier` ON `tbl_pesanan`.`id_supplier` = `tbl_supplier`.`id_supplier`')
+ 2 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tbl_barang_masuk`.*, `tbl_pesanan`.*, `tbl_barang`.`nama_barang`, `tbl_supplier`.`nama_supplier`
+FROM `tbl_barang_masuk`
+JOIN `tbl_pesanan` ON `tbl_barang_masuk`.`id_pesanan` = `tbl_pesanan`.`id_pesanan`
+JOIN `tbl_supplier` ON `tbl_pesanan`.`id_supplier` = `tbl_supplier`.`id_supplier`')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `tbl_barang_masuk`.*, `tbl_pesanan`.*, `tbl_barang`.`nama_barang`, `tbl_supplier`.`nama_supplier`
+FROM `tbl_barang_masuk`
+JOIN `tbl_pesanan` ON `tbl_barang_masuk`.`id_pesanan` = `tbl_pesanan`.`id_pesanan`
+JOIN `tbl_supplier` ON `tbl_pesanan`.`id_supplier` = `tbl_supplier`.`id_supplier`', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\Admin\BarangMasukController.php(24): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\BarangMasukController->index()
+ 8 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\BarangMasukController))
+ 9 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+CRITICAL - 2024-11-19 08:41:31 --> [Caused by] mysqli_sql_exception: Unknown column 'tbl_barang.nama_barang' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 312.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(312): mysqli->query('SELECT `tbl_barang_masuk`.*, `tbl_pesanan`.*, `tbl_barang`.`nama_barang`, `tbl_supplier`.`nama_supplier`
+FROM `tbl_barang_masuk`
+JOIN `tbl_pesanan` ON `tbl_barang_masuk`.`id_pesanan` = `tbl_pesanan`.`id_pesanan`
+JOIN `tbl_supplier` ON `tbl_pesanan`.`id_supplier` = `tbl_supplier`.`id_supplier`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(734): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tbl_barang_masuk`.*, `tbl_pesanan`.*, `tbl_barang`.`nama_barang`, `tbl_supplier`.`nama_supplier`
+FROM `tbl_barang_masuk`
+JOIN `tbl_pesanan` ON `tbl_barang_masuk`.`id_pesanan` = `tbl_pesanan`.`id_pesanan`
+JOIN `tbl_supplier` ON `tbl_pesanan`.`id_supplier` = `tbl_supplier`.`id_supplier`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(648): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tbl_barang_masuk`.*, `tbl_pesanan`.*, `tbl_barang`.`nama_barang`, `tbl_supplier`.`nama_supplier`
+FROM `tbl_barang_masuk`
+JOIN `tbl_pesanan` ON `tbl_barang_masuk`.`id_pesanan` = `tbl_pesanan`.`id_pesanan`
+JOIN `tbl_supplier` ON `tbl_pesanan`.`id_supplier` = `tbl_supplier`.`id_supplier`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1644): CodeIgniter\Database\BaseConnection->query('SELECT `tbl_barang_masuk`.*, `tbl_pesanan`.*, `tbl_barang`.`nama_barang`, `tbl_supplier`.`nama_supplier`
+FROM `tbl_barang_masuk`
+JOIN `tbl_pesanan` ON `tbl_barang_masuk`.`id_pesanan` = `tbl_pesanan`.`id_pesanan`
+JOIN `tbl_supplier` ON `tbl_pesanan`.`id_supplier` = `tbl_supplier`.`id_supplier`', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\Admin\BarangMasukController.php(24): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\BarangMasukController->index()
+ 9 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\BarangMasukController))
+10 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 08:41:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:42:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:42:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:43:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:43:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:45:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:45:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:45:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:46:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:46:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:46:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:46:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:46:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:46:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:46:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:46:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:46:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:46:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:46:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:46:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:47:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:47:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:47:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:47:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:47:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:47:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:48:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:48:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:49:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:49:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:49:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:49:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:49:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:49:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:49:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:49:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:49:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:49:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:49:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:50:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:51:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:54:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:57:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:59:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 08:59:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 09:01:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 09:02:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 09:02:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 09:02:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 09:03:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 20:38:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 20:38:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 20:38:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 20:38:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 20:38:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 20:39:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 20:46:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 20:47:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-11-19 20:47:01 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "admin/penjualan.php"
+[Method: GET, Route: admin/data-penjualan]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 41.
+ 1 SYSTEMPATH\View\View.php(222): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/penjualan.php')
+ 2 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('admin/penjualan', [], true)
+ 3 APPPATH\Controllers\Admin\PenjualanController.php(21): view('admin/penjualan', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\PenjualanController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PenjualanController))
+ 6 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 20:47:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-11-19 20:47:39 --> ErrorException: Undefined variable $data_barang
+[Method: GET, Route: admin/data-penjualan]
+in APPPATH\Views\pages\admin\penjualan.php on line 88.
+ 1 APPPATH\Views\pages\admin\penjualan.php(88): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $data_barang', 'D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\penjualan.php', 88)
+ 2 SYSTEMPATH\View\View.php(234): include('D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\penjualan.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('pages/admin/penjualan', [], true)
+ 5 APPPATH\Controllers\Admin\PenjualanController.php(21): view('pages/admin/penjualan', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\PenjualanController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PenjualanController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 20:48:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-11-19 20:48:52 --> ErrorException: Undefined variable $lastId
+[Method: GET, Route: admin/data-penjualan]
+in APPPATH\Views\pages\admin\penjualan.php on line 169.
+ 1 APPPATH\Views\pages\admin\penjualan.php(169): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $lastId', 'D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\penjualan.php', 169)
+ 2 SYSTEMPATH\View\View.php(234): include('D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\penjualan.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('pages/admin/penjualan', [], true)
+ 5 APPPATH\Controllers\Admin\PenjualanController.php(21): view('pages/admin/penjualan', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\PenjualanController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PenjualanController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 20:48:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-11-19 20:48:53 --> ErrorException: Undefined variable $lastId
+[Method: GET, Route: admin/data-penjualan]
+in APPPATH\Views\pages\admin\penjualan.php on line 169.
+ 1 APPPATH\Views\pages\admin\penjualan.php(169): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $lastId', 'D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\penjualan.php', 169)
+ 2 SYSTEMPATH\View\View.php(234): include('D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\penjualan.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('pages/admin/penjualan', [], true)
+ 5 APPPATH\Controllers\Admin\PenjualanController.php(21): view('pages/admin/penjualan', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\PenjualanController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PenjualanController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 20:49:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-11-19 20:49:19 --> ErrorException: Undefined variable $lastId
+[Method: GET, Route: admin/data-penjualan]
+in APPPATH\Views\pages\admin\penjualan.php on line 125.
+ 1 APPPATH\Views\pages\admin\penjualan.php(125): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $lastId', 'D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\penjualan.php', 125)
+ 2 SYSTEMPATH\View\View.php(234): include('D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\penjualan.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('pages/admin/penjualan', [], true)
+ 5 APPPATH\Controllers\Admin\PenjualanController.php(21): view('pages/admin/penjualan', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\PenjualanController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PenjualanController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 20:58:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-11-19 20:58:22 --> ErrorException: Undefined variable $lastId
+[Method: GET, Route: admin/data-penjualan]
+in APPPATH\Views\pages\admin\penjualan.php on line 125.
+ 1 APPPATH\Views\pages\admin\penjualan.php(125): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $lastId', 'D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\penjualan.php', 125)
+ 2 SYSTEMPATH\View\View.php(234): include('D:\\JOKI\\CI-4\\inventory-bangunan\\app\\Views\\pages\\admin\\penjualan.php')
+ 3 SYSTEMPATH\View\View.php(237): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1171): CodeIgniter\View\View->render('pages/admin/penjualan', [], true)
+ 5 APPPATH\Controllers\Admin\PenjualanController.php(21): view('pages/admin/penjualan', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Admin\PenjualanController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(509): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PenjualanController))
+ 8 SYSTEMPATH\CodeIgniter.php(355): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(325): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('D:\\JOKI\\CI-4\\inventory-bangunan\\public\\index.php')
+INFO - 2024-11-19 21:22:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 21:28:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-11-19 21:28:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
