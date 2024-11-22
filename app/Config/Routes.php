@@ -18,10 +18,11 @@ $routes->get('get-barang-penjualan/(:any)','Admin\PenjualanController::getBarang
 $routes->group('admin',['filter' => 'AuthFilter'], static function ($routes){
     $routes->get('/','Admin\DashboardController::index');
     //data user
-    $routes->get('data-user','Admin\UserController::index');
-    $routes->post('data-user/save','Admin\UserController::save');
-    $routes->post('data-user/delete/(:any)','Admin\UserController::delete/$1');
-    $routes->post('data-user/update/(:any)','Admin\UserController::update/$1');
+    $routes->group('data-user', function($routes) {
+        $routes->get('', 'Admin\UserController::index');
+        $routes->match(['get', 'post'], 'edit/(:num)', 'Admin\UserController::edit/$1');
+        $routes->match(['get'], 'delete/(:num)', 'Admin\UserController::delete/$1');
+    });
 
     //barang masuk
     $routes->get('barang-masuk','Admin\BarangMasukController::index');
