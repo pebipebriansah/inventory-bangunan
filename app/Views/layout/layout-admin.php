@@ -46,7 +46,7 @@ $this->nav_active = $this->nav_active ?? '';
                 <div class="menu-inner-shadow"></div>
                 <ul class="menu-inner py-1">
                     <!-- Dashboard -->
-                    <li class="menu-item <?= $this->menu_active == 'dashboard' ? 'active' : '' ?>">
+                    <li class="menu-item <?= $this->nav_active == 'dashboard' ? 'active' : '' ?>">
                         <a href="<?= base_url('admin/'); ?>" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">Dashboard</div>
