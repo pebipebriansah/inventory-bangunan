@@ -1,5 +1,10 @@
-<?=$this->extend('layout/layout-admin')?>
-<?=$this->section('content')?>
+<?php
+$this->title = 'Data Pesanan';
+$this->menu_active = 'master';
+$this->nav_active = 'pesanan';
+$this->extend('layout/layout-admin');
+$this->section('content');
+?>
 <!-- Content -->
 <div class="container-xxl flex-grow-1 container-p-y">
     <!-- Basic Bootstrap Table -->

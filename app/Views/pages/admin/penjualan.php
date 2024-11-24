@@ -1,5 +1,10 @@
-<?=$this->extend('layout/layout-admin')?>
-<?=$this->section('content')?>
+<?php
+$this->title = 'Transaksi Penjualan';
+$this->menu_active = 'transaksi';
+$this->nav_active = 'penjualan';
+$this->extend('layout/layout-admin');
+$this->section('content');
+?>
 <!-- Content -->
 <div class="container-xxl flex-grow-1 container-p-y">
     <!-- Basic Bootstrap Table -->
