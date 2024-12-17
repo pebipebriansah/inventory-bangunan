@@ -4,13 +4,18 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Models\SupplierModel;
+use \Hermawan\DataTables\DataTable;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class SupplierController extends BaseController
 {
     protected $supplierModel;
+    protected $pageUtama;
+    protected $uriUtama;
     public function __construct() {
         $this->supplierModel = new SupplierModel();
+        $this->pageUtama = 'pages/admin/supplier/data-supplier';
+        $this->uriUtama = 'admin/data-supplier';
     }
     public function index()
     {
@@ -27,36 +32,84 @@ class SupplierController extends BaseController
         $idSupplier = 'SUP-'.str_pad($incrementId, 3, '0', STR_PAD_LEFT);
         $data = [
             'title' => 'Data Supplier',
-            'data_supplier' => $this->supplierModel->findAll(),
             'last_id' => $idSupplier,
         ];
-        return view ('pages/admin/data-supplier',$data);
+        return view ($this->pageUtama,$data);
     }
-    public function save(){
-        $data = $this->request->getPost();
-        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-        $this->supplierModel->insert($data);
-        session()->setFlashdata('success', 'Data Supplier berhasil disimpan');
-        return redirect()->to('/admin/data-supplier');
+    public function getSupplier(){
+        $data = $this->supplierModel->getSupplierQuery();
+        return DataTable::of($data)
+        ->addNumbering()
+        ->add('aksi', function($row){
+            return '<a href="' . site_url('admin/data-supplier/edit/' . $row->id_supplier) . '" class="btn btn-primary">Edit</a>
+                   <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-supplier-id="'. $row->id_supplier. '">Hapus</a>';
+        })->toJson();
     }
-    public function delete($id){
-        if($this->supplierModel->delete($id)==true){
-            session()->setFlashdata('success', 'Data Supplier berhasil dihapus');
-            return redirect()->to('/admin/data-supplier');
-        }else{
-            session()->setFlashdata('error', 'Data Supplier gagal dihapus');
-            return redirect()->to('/admin/data-supplier');
+    public function save() {
+        $idSupplier = $this->request->getPost('id_supplier');
+        $namaSupplier = $this->request->getPost('nama_supplier');
+        $alamat = $this->request->getPost('alamat');
+        $kategori = $this->request->getPost('kategori');
+        // Validasi data
+        $data = [
+            'id_supplier' => $idSupplier,
+            'nama_supplier' => $namaSupplier,
+            'alamat' => $alamat,
+            'kategori' => $kategori
+        ];
+        // Menyimpan data
+        if ($this->supplierModel->insert($data) !== false) {
+            return $this->response->setJSON([
+                'status' => 'success',
+                'message' => 'Data Supplier berhasil disimpan'
+            ]);
+        } else {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Data Supplier gagal disimpan'
+            ]);
         }
     }
-    public function update($id){
-        $data = $this->request->getPost();
-        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-        if($this->supplierModel->update($id, $data)==true){
-            session()->setFlashdata('success', 'Data Supplier berhasil diupdate');
-            return redirect()->to('/admin/data-supplier');
-        }else{
-            session()->setFlashdata('error', 'Data Supplier gagal diupdate');
-            return redirect()->to('/admin/data-supplier');
+    public function edit($id) {
+        $supplier = $this->supplierModel->find($id);
+        if (!$supplier) {
+            return redirect()->to('admin/data-supplier')->with('error', 'User tidak ditemukan');
         }
-    }   
+        return view('pages/admin/supplier/edit-supplier', ['supplier' => $supplier]);
+    }
+    public function delete($id)
+    {
+        if ($this->supplierModel->delete($id)) {
+            return $this->response->setJSON([
+                'status' => 'success',
+                'message' => 'Data Supplier berhasil dihapus!'
+            ]);
+        } else {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Terjadi kesalahan saat menghapus data Supplier.'
+            ]);
+        }
+    }
+    public function update()
+{
+    $SupplierId = $this->request->getPost('id_supplier');
+    $namaSupplier = $this->request->getPost('nama_supplier');
+    $alamat = $this->request->getPost('alamat');
+    $kategori = $this->request->getPost('kategori');
+
+    // Cek apakah pengguna ada
+    $supplier = $this->supplierModel->find($SupplierId);
+    if ($supplier) {
+        // Update data pengguna
+        $this->supplierModel->update($SupplierId, [
+            'nama_supplier' => $namaSupplier,
+            'alamat' => $alamat,
+            'kategori' => $kategori
+        ]);
+        return redirect()->to('admin/data-supplier')->with('success', 'Data Supplier berhasil diperbarui');
+    } else {
+        return redirect()->to('admin/data-supplier')->with('error', 'Data Supplier tidak ditemukan');
+    }
+}
 }

@@ -42,7 +42,7 @@
               <div class="app-brand justify-content-center">
                 <a href="index.html" class="app-brand-link gap-2">
                   <img src="<?=base_url('image/tb.png');?>" alt="Sneat" width="50" height="50" />
-                  <span class="app-brand-text text-uppercase text-black">TB Maman</span>
+                  <span class="app-brand-text text-uppercase text-black">TB Wawan</span>
                 </a>
               </div>
               <!-- /Logo -->

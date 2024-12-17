@@ -16,10 +16,14 @@ $this->nav_active = $this->nav_active ?? '';
     <link
         href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/vendor/fonts/boxicons.css'); ?>" />
     <link rel="stylesheet" href="<?= base_url('assets/vendor/css/core.css'); ?>" class="template-customizer-core-css" />
     <link rel="stylesheet" href="<?= base_url('assets/vendor/css/theme-default.css'); ?>"
         class="template-customizer-theme-css" />
+    <!-- Include CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+    <!-- Include JS -->
     <link rel="stylesheet" href="<?= base_url('assets/css/demo.css'); ?>" />
     <link rel="stylesheet" href="<?= base_url('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css'); ?>" />
     <link rel="stylesheet" href="<?= base_url('assets/vendor/libs/apex-charts/apex-charts.css'); ?>" />
@@ -37,7 +41,7 @@ $this->nav_active = $this->nav_active ?? '';
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                 <div class="app-brand demo">
                     <img src="<?= base_url('image/tb.png'); ?>" alt="Sneat" width="50" height="50" />
-                    <span class="app-brand-text text-uppercase text-black">TB Maman</span>
+                    <span class="app-brand-text text-uppercase text-black">TB Wawan</span>
                     <a href="javascript:void(0);"
                         class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
                         <i class="bx bx-chevron-left bx-sm align-middle"></i>
@@ -55,69 +59,69 @@ $this->nav_active = $this->nav_active ?? '';
 
                     <!-- Layouts -->
                     <?php if (session()->get('role') == 'admin' || session()->get('role') == 'manager' || session()->get('role') == 'gudang'): ?>
-                        <li class="menu-item <?= $this->menu_active == 'master' ? 'active open' : '' ?>">
-                            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                                <i class="menu-icon tf-icons bx bx-layout"></i>
-                                <div data-i18n="Layouts">Master Data</div>
-                            </a>
-                            <ul class="menu-sub">
-                                <?php if (session()->get('role') == 'admin'): ?>
-                                    <li class="menu-item <?= $this->nav_active == 'user' ? 'active' : '' ?>">
-                                        <a href="<?= base_url('admin/data-user'); ?>" class="menu-link">
-                                            <div data-i18n="Without menu">Data User</div>
-                                        </a>
-                                    </li>
-                                <?php endif ?>
-                                <?php if (session()->get('role') == 'admin' || session()->get('role') == 'Gudang'): ?>
-                                    <li class="menu-item <?= $this->nav_active == 'barang' ? 'active' : '' ?>">
-                                        <a href="<?= base_url('admin/data-barang'); ?>" class="menu-link">
-                                            <div data-i18n="Without navbar">Data Barang</div>
-                                        </a>
-                                    </li>
-                                <?php endif; ?>
-                                <?php if (session()->get('role') == 'admin'): ?>
-                                    <li class="menu-item <?= $this->nav_active == 'supplier' ? 'active' : '' ?>">
-                                        <a href="<?= base_url('admin/data-supplier'); ?>" class="menu-link">
-                                            <div data-i18n="Container">Data Supplier</div>
-                                        </a>
-                                    </li>
-                                <?php endif; ?>
-                                <li class="menu-item <?= $this->nav_active == 'pesanan' ? 'active' : '' ?>">
-                                    <a href="<?= base_url('admin/data-pesanan') ?>" class="menu-link">
-                                        <div data-i18n="Fluid">Data Pesanan</div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                    <li class="menu-item <?= $this->menu_active == 'master' ? 'active open' : '' ?>">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-layout"></i>
+                            <div data-i18n="Layouts">Master Data</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <?php if (session()->get('role') == 'admin'): ?>
+                            <li class="menu-item <?= $this->nav_active == 'user' ? 'active' : '' ?>">
+                                <a href="<?= base_url('admin/data-user'); ?>" class="menu-link">
+                                    <div data-i18n="Without menu">Data User</div>
+                                </a>
+                            </li>
+                            <?php endif ?>
+                            <?php if (session()->get('role') == 'admin' || session()->get('role') == 'Gudang'): ?>
+                            <li class="menu-item <?= $this->nav_active == 'barang' ? 'active' : '' ?>">
+                                <a href="<?= base_url('admin/data-barang'); ?>" class="menu-link">
+                                    <div data-i18n="Without navbar">Data Barang</div>
+                                </a>
+                            </li>
+                            <?php endif; ?>
+                            <?php if (session()->get('role') == 'admin'): ?>
+                            <li class="menu-item <?= $this->nav_active == 'supplier' ? 'active' : '' ?>">
+                                <a href="<?= base_url('admin/data-supplier'); ?>" class="menu-link">
+                                    <div data-i18n="Container">Data Supplier</div>
+                                </a>
+                            </li>
+                            <?php endif; ?>
+                            <li class="menu-item <?= $this->nav_active == 'pesanan' ? 'active' : '' ?>">
+                                <a href="<?= base_url('admin/data-pesanan') ?>" class="menu-link">
+                                    <div data-i18n="Fluid">Data Pesanan</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                     <?php endif; ?>
                     <?php if (session()->get('role') == 'manager' || session()->get('role') == 'admin'): ?>
-                        <li class="menu-header small text-uppercase">
-                            <span class="menu-header-text">Laporan</span>
-                        </li>
-                        <li class="menu-item <?= $this->menu_active == 'laporan' ? 'active open' : '' ?>">
-                            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                                <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                                <div data-i18n="Account Settings">Laporan Barang</div>
-                            </a>
-                            <ul class="menu-sub">
-                                <li class="menu-item <?= $this->nav_active == 'barang-masuk' ? 'active' : '' ?>">
-                                    <a href="<?= base_url('admin/barang-masuk'); ?>" class="menu-link">
-                                        <div data-i18n="Account">Barang Masuk</div>
-                                    </a>
-                                </li>
-                                <li class="menu-item <?= $this->nav_active == 'barang-keluar' ? 'active' : '' ?>">
-                                    <a href="<?= base_url('admin/barang-keluar') ?>" class="menu-link">
-                                        <div data-i18n="Notifications">Barang Keluar</div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="menu-item <?= $this->nav_active == 'penjualan' ? 'active' : '' ?>">
-                            <a href="<?= base_url('admin/data-penjualan'); ?>" class="menu-link">
-                                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                                <div data-i18n="Analytics">Transaksi Penjualan</div>
-                            </a>
-                        </li>
+                    <li class="menu-header small text-uppercase">
+                        <span class="menu-header-text">Laporan</span>
+                    </li>
+                    <li class="menu-item <?= $this->menu_active == 'laporan' ? 'active open' : '' ?>">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                            <div data-i18n="Account Settings">Laporan Barang</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item <?= $this->nav_active == 'barang-masuk' ? 'active' : '' ?>">
+                                <a href="<?= base_url('admin/barang-masuk'); ?>" class="menu-link">
+                                    <div data-i18n="Account">Barang Masuk</div>
+                                </a>
+                            </li>
+                            <li class="menu-item <?= $this->nav_active == 'barang-keluar' ? 'active' : '' ?>">
+                                <a href="<?= base_url('admin/barang-keluar') ?>" class="menu-link">
+                                    <div data-i18n="Notifications">Barang Keluar</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item <?= $this->nav_active == 'penjualan' ? 'active' : '' ?>">
+                        <a href="<?= base_url('admin/data-penjualan'); ?>" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                            <div data-i18n="Analytics">Transaksi Penjualan</div>
+                        </a>
+                    </li>
                     <?php endif; ?>
                 </ul>
             </aside>
@@ -156,7 +160,8 @@ $this->nav_active = $this->nav_active ?? '';
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <span class="fw-semibold d-block"><?= session()->get('nama_lengkap') ?></span>
+                                                    <span
+                                                        class="fw-semibold d-block"><?= session()->get('nama_lengkap') ?></span>
                                                     <small class="text-muted"><?= session()->get('role'); ?></small>
                                                 </div>
                                             </div>
@@ -186,9 +191,9 @@ $this->nav_active = $this->nav_active ?? '';
                         <div class="text-center">
                             ©
                             <script>
-                                document.write(new Date().getFullYear());
+                            document.write(new Date().getFullYear());
                             </script>
-                            TB Maman <small>For Company</small>
+                            TB Wawan <small>For Company</small>
                         </div>
                     </div>
                 </footer>
@@ -207,6 +212,10 @@ $this->nav_active = $this->nav_active ?? '';
     <script src="<?= base_url('assets/js/main.js'); ?>"></script>
     <script src="<?= base_url('assets/js/dashboards-analytics.js'); ?>"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <?= $this->renderSection('script'); ?>
 </body>
 

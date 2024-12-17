@@ -56,4 +56,7 @@ class SupplierModel extends Model
             return null;
         }
     }
+    public function getSupplierQuery(){
+        return $this->builder()->select('id_supplier,nama_supplier,alamat,kategori');
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use App\Models\BarangModel;
 use App\Models\PenjualanModel;
+use \Hermawan\DataTables\DataTable;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class PenjualanController extends BaseController
@@ -12,19 +13,31 @@ class PenjualanController extends BaseController
     protected $penjualanModel;
     protected $barangModel;
     protected $barangKeluar;
+    protected $pageUtama;
+    protected $uriUtama;
     public function __construct() {
         $this->penjualanModel = new PenjualanModel();
         $this->barangModel = new BarangModel();
         $this->barangKeluar = new \App\Models\BarangKeluarModel();
+        $this->pageUtama = 'pages/admin/penjualan/penjualan';
+        $this->uriUtama = 'admin/data-penjualan';
     }
     public function index()
     {
         $data = [
             'title' => 'Data Penjualan',
-            'penjualan' => $this->penjualanModel->join('tbl_barang', 'tbl_barang.id_barang = tbl_penjualan.id_barang')->findAll(),
             'barang' => $this->barangModel->findAll(),
         ];
-        return view('pages/admin/penjualan', $data);
+        return view($this->pageUtama, $data);
+    }
+    public function getPenjualan(){
+        $penjualan = $this->penjualanModel->getPenjualanQuery();
+        return DataTable::of($penjualan)
+        ->addNumbering()
+        ->add('aksi', function($row){
+            return '<a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-penjualan-id="'. $row->id_penjualan. '">Hapus</a>';
+        })
+        ->toJson();
     }
     public function getBarang($id){
         $barang = $this->barangModel->getBarangById($id);
@@ -71,8 +84,35 @@ class PenjualanController extends BaseController
             'qty' => $data['qty'],
             'total' => $data['total']
         ];
-        $this->penjualanModel->insert($dataPenjualan);
-        session()->setFlashdata('success', 'Data Penjualan berhasil disimpan');
-        return redirect()->to('/admin/penjualan');
+        if ($this->penjualanModel->insert($dataPenjualan) !== false) {
+            return $this->response->setJSON([
+                'status' => 'success',
+                'message' => 'Data Penjualan berhasil disimpan'
+            ]);
+        } else {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Data Penjualan gagal disimpan'
+            ]);
+        }
+    }
+    public function getPenjualanTerbanyak()
+    {
+        $data = $this->penjualanModel->getPenjualanTerbanyak();
+        return $this->response->setJSON($data);
+    }
+    public function delete($id)
+    {
+        if ($this->penjualanModel->delete($id)) {
+            return $this->response->setJSON([
+                'status' => 'success',
+                'message' => 'Data Penjualan berhasil dihapus!'
+            ]);
+        } else {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Terjadi kesalahan saat menghapus data Penjualan.'
+            ]);
+        }
     }
 }

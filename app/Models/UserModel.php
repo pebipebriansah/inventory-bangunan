@@ -43,4 +43,8 @@ class UserModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+    
+    public function getUserQuery(){
+        return $this->builder()->select('id_user,nama_lengkap,username,role');
+    }
 }

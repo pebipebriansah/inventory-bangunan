@@ -7,31 +7,28 @@ $this->section('content');
 ?>
 <!-- Content -->
 <div class="container-xxl flex-grow-1 container-p-y">
-    <!-- Basic Bootstrap Table -->
-    <?php if (session()->getFlashdata('success')) :?>
-    <div class="bs-toast toast fade show bg-primary" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast" id="successToast" role="alert" aria-live="assertive" aria-atomic="true"
+        style="position: fixed; top: 20px; right: 20px; z-index: 9999;">
         <div class="toast-header">
-            <i class="bx bx-bell me-2"></i>
-            <div class="me-auto fw-semibold">Success</div>
-            <small id="toast-timestamp"><?= date('H:i:s'); ?></small>
+            <strong class="me-auto">Success</strong>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
         <div class="toast-body">
-            <?= session()->getFlashdata('success');?></div>
+            Data Penjualan berhasil disimpan!
+        </div>
     </div>
-    <?php endif;?>
-    <?php if (session()->getFlashdata('error')) :?>
-    <div class="bs-toast toast fade show bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
+
+    <!-- Toast Error -->
+    <div class="toast" id="errorToast" role="alert" aria-live="assertive" aria-atomic="true"
+        style="position: fixed; top: 20px; right: 20px; z-index: 9999;">
         <div class="toast-header">
-            <i class="bx bx-bell me-2"></i>
-            <div class="me-auto fw-semibold">Error</div>
-            <small id="toast-timestamp"><?= date('H:i:s'); ?></small>
+            <strong class="me-auto">Error</strong>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
         <div class="toast-body">
-            <?= session()->getFlashdata('error');?></div>
+            Terjadi kesalahan saat menyimpan data Penjualan.
+        </div>
     </div>
-    <?php endif;?>
     <!-- Tabel Data Pesanan -->
     <div class="card">
         <h5 class="card-header d-flex justify-content-between align-items-center">
@@ -46,10 +43,6 @@ $this->section('content');
             <div class="row mb-3">
                 <div class="col-md-6">
                     <input type="text" id="search-input" class="form-control" placeholder="Search...">
-                </div>
-                <div class="col-md-6 text-end">
-                    <button id="print-button" class="btn btn-primary">Print</button>
-                    <button id="download-button" class="btn btn-success">Download</button>
                 </div>
             </div>
             <div class="table-responsive">
@@ -101,15 +94,7 @@ $this->section('content');
                                         <?php endif;?>
                                         <?php elseif ($pesanan['status'] == 'Barang Di Pesan'): ?>
                                         <li>
-                                            <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                data-bs-target="#deleteModal<?=$pesanan['id_pesanan']?>"
-                                                data-id="<?=$pesanan['id_pesanan']?>"
-                                                onclick="setDeleteModalData(this)">
-                                                <i class="bx bx-trash me-2"></i> Delete
-                                            </a>
-                                        </li>
-                                        <?php elseif ($pesanan['status'] == 'Barang Di Kirim'): ?>
-                                        <li>
+                                            <?php if(session()->get('role') == 'gudang'): ?>
                                             <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
                                                 data-bs-target="#terimaModal<?=$pesanan['id_pesanan']?>"
                                                 data-id="<?=$pesanan['id_pesanan']?>"
@@ -117,7 +102,9 @@ $this->section('content');
                                                 <i class="bx bx-check me-2"> Terima Barang</i>
                                             </a>
                                         </li>
+                                        <?php endif;?>
                                         <?php elseif ($pesanan['status'] == 'Barang Diterima'): ?>
+                                        <?php if(session()->get('role') == 'gudang'): ?>
                                         <li>
                                             <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
                                                 data-bs-target="#masukModal<?=$pesanan['id_pesanan']?>"
@@ -125,6 +112,7 @@ $this->section('content');
                                                 <i class="bx bx-move me-2"></i> Move To Barang Masuk
                                             </a>
                                         </li>
+                                        <?php endif;?>
                                         <?php endif;?>
                                     </ul>
                                 </div>
@@ -247,12 +235,15 @@ $this->section('content');
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="nameWithTitle" class="form-label">Nama Barang</label>
-                                <select name="id_barang_supplier" id="id_barang_supplier" class="form-control">
+                                <select name="id_barang" id="id_barang" class="form-control">
                                     <option value="#">Silahkan Pilih</option>
-                                    <?php foreach($barang_supplier as $barang):?>
-                                    <option value="<?=$barang['id_barang_supplier'];?>"><?=$barang['nama_barang']?>
-                                    </option>
-                                    <?php endforeach;?>
+                                    <?php if (!empty($barang)): ?>
+                                    <?php foreach($barang as $br): ?>
+                                    <option value="<?= $br['id_barang']; ?>"><?= $br['nama_barang']; ?></option>
+                                    <?php endforeach; ?>
+                                    <?php else: ?>
+                                    <option value="#" disabled>Stok tidak tersedia untuk pembelian</option>
+                                    <?php endif; ?>
                                 </select>
                             </div>
                             <input type="hidden" name="nama_barang" id="nama_barang">
@@ -273,18 +264,20 @@ $this->section('content');
                                 <input type="text" name="total" id="total" class="form-control" readonly />
                             </div>
                         </div>
+                        <div id="perhitungan"></div>
+                        <div id="kesimpulan"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                             Close
                         </button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary" <?php if (empty($barang)) echo 'disabled'; ?>>Save
+                            changes</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
     <!-- / Content -->
     <?=$this->endSection()?>
     <?=$this->section('script')?>
@@ -335,22 +328,91 @@ $this->section('content');
     </script>
     <script>
     $(document).ready(function() {
-        $('#id_barang_supplier').change(function() {
+        // Event saat id_barang berubah
+        $('#id_barang').change(function() {
             const selectedId = $(this).val();
             if (selectedId) {
-                // Lakukan permintaan AJAX ke controller
+                // Lakukan permintaan AJAX ke controller untuk mendapatkan data barang dan penjualan
                 $.ajax({
-                    url: `<?=base_url('get-barang/');?>${selectedId}`, // Gunakan backticks dengan interpolasi
+                    url: `<?=base_url('get-barang/');?>${selectedId}`, // Gunakan backticks
                     type: 'GET',
                     dataType: 'json',
                     success: function(data) {
                         if (data && data.nama_barang && data.id_supplier && data.harga) {
+                            // Isi form dengan data barang
                             $('#nama_barang').val(data.nama_barang);
                             $('#id_supplier').val(data.id_supplier);
                             $('#harga').val(data.harga);
                             $('#total').val('');
+
+                            // Lakukan permintaan tambahan untuk menghitung stok penjualan
+                            $.ajax({
+                                url: `<?=base_url('get-total-penjualan/');?>${selectedId}`, // Endpoint untuk data penjualan
+                                type: 'GET',
+                                dataType: 'json',
+                                success: function(salesData) {
+                                    if (salesData && salesData.total_qty) {
+                                        const totalQty = salesData.total_qty;
+
+                                        // Hitung rata-rata penjualan harian
+                                        const daysInMonth =
+                                            30; // Misal satu bulan di sini diasumsikan 30 hari
+                                        const avgDailySales = totalQty /
+                                            daysInMonth;
+
+                                        // Buffer untuk penyesuaian stok (misalnya 20%)
+                                        const buffer = 0.2;
+                                        const leadTime =
+                                            4; // Waktu pengadaan barang (misal 7 hari)
+
+                                        // Prediksi stok optimal
+                                        const optimalStock = Math.ceil(
+                                            avgDailySales * (daysInMonth +
+                                                leadTime) * (1 + buffer)
+                                        );
+
+                                        // Tampilkan perhitungan dan prediksi stok optimal di textview
+                                        $('#perhitungan').html(`
+                                        <p><strong>Perhitungan Stok Optimal:</strong></p>
+                                        <p>Total Penjualan Bulanan: ${totalQty} unit</p>
+                                        <p>Rata-rata Penjualan Harian: ${avgDailySales.toFixed(2)} unit</p>
+                                        <p>Buffer Stok: ${buffer * 100}%</p>
+                                        <p>Lead Time (Hari Pengadaan): ${leadTime} hari</p>
+                                        <p><strong>Prediksi Stok Optimal: ${optimalStock} unit</strong></p>
+                                    `);
+
+                                        // Kesimpulan
+                                        let kesimpulan = '';
+                                        if (optimalStock > totalQty) {
+                                            kesimpulan =
+                                                'Stok yang dibutuhkan lebih tinggi dari penjualan bulanan untuk mengantisipasi permintaan.';
+                                        } else if (optimalStock < totalQty) {
+                                            kesimpulan =
+                                                'Stok yang dibutuhkan lebih rendah dari penjualan bulanan, perlu penyesuaian untuk mencegah kehabisan stok.';
+                                        } else {
+                                            kesimpulan =
+                                                'Stok optimal sudah sesuai dengan penjualan bulanan.';
+                                        }
+
+                                        $('#kesimpulan').html(`
+                                        <p><strong>Kesimpulan:</strong></p>
+                                        <p>${kesimpulan}</p>
+                                    `);
+                                    } else {
+                                        $('#perhitungan').html(
+                                            'Data penjualan tidak tersedia.'
+                                        );
+                                        $('#kesimpulan').html(
+                                            'Kesimpulan tidak dapat dihitung karena data tidak lengkap.'
+                                        );
+                                    }
+                                },
+                                error: function() {
+                                    alert('Gagal menghitung total penjualan.');
+                                }
+                            });
                         } else {
-                            alert('Data tidak lengkap.');
+                            alert('Data barang tidak lengkap.');
                         }
                     },
                     error: function() {
@@ -363,9 +425,11 @@ $this->section('content');
                 $('#id_supplier').val('');
                 $('#harga').val('');
                 $('#total').val('');
+                $('#prediksi_stok').val('');
+                $('#perhitungan').html('');
+                $('#kesimpulan').html('');
             }
         });
-
         // Hitung total saat jumlah diinputkan
         $('#jumlah').on('input', function() {
             const jumlah = parseInt($(this).val()) || 0;
@@ -374,118 +438,25 @@ $this->section('content');
             $('#total').val(total);
         });
     });
-    </script>
-    <script>
+    function showToast(type, message) {
+        var toastType = type.toLowerCase();
+        var toastElement = $('#' + toastType + 'Toast');
+        toastElement.find('.toast-header strong').text(type);
+        toastElement.find('.toast-body').text(message);
+        var toast = new bootstrap.Toast(toastElement[0]);
+        toast.show();
+
+        setTimeout(function() {
+            toast.hide();
+        }, 2000); // Hide after 2 seconds
+    }
     $(document).ready(function() {
-        const tableRows = $('#data-pesanan-table tbody tr'); // Ambil semua baris tabel
-        const rowsPerPage = 5; // Jumlah data per halaman
-        let currentPage = 1;
-
-        // Fungsi untuk mengonversi format tanggal MM-DD-YYYY ke YYYY-MM-DD
-        function formatDate(inputDate) {
-            const [year, month, day] = inputDate.split("-");
-            return `${year}-${month}-${day}`;
-        }
-
-        // Fungsi untuk memfilter data
-        function filterTable() {
-            const searchQuery = $('#search-input').val().toLowerCase(); // Ambil input pencarian
-            const selectedDate = $('#filter-date').val(); // Ambil nilai tanggal dari filter
-
-            tableRows.hide().filter(function() {
-                const rowText = $(this).text().toLowerCase(); // Seluruh teks di baris tabel
-                const rowDate = $(this).find('td:nth-child(4)').text(); // Kolom tanggal masuk
-
-                // Logika pencarian dan filter tanggal
-                const matchesSearch = searchQuery === "" || rowText.includes(searchQuery);
-                const matchesDate =
-                    selectedDate === "" || rowDate === formatDate(selectedDate);
-
-                return matchesSearch && matchesDate;
-            }).show();
-
-            // Reset Pagination
-            paginate();
-        }
-
-        // Fungsi untuk mengatur pagination
-        function paginate() {
-            const visibleRows = tableRows.filter(':visible');
-            const totalPages = Math.ceil(visibleRows.length / rowsPerPage);
-
-            $('#pagination-container').pagination({
-                items: visibleRows.length,
-                itemsOnPage: rowsPerPage,
-                cssStyle: 'light-theme',
-                onPageClick: function(pageNumber) {
-                    currentPage = pageNumber;
-
-                    const start = (currentPage - 1) * rowsPerPage;
-                    const end = start + rowsPerPage;
-
-                    visibleRows.hide().slice(start, end).show();
-                }
-            });
-
-            // Tampilkan halaman pertama saat pagination direset
-            visibleRows.slice(0, rowsPerPage).show();
-        }
-
-        // Fungsi untuk Print tabel
-        $('#print-button').on('click', function() {
-            const originalContent = document.body.innerHTML;
-            const printContent = document.getElementById('data-table').outerHTML;
-
-            document.body.innerHTML =
-                `<html><head><title>Print Table</title></head><body>${printContent}</body></html>`;
-            window.print();
-            document.body.innerHTML = originalContent;
-            location.reload(); // Reload untuk mengembalikan ke kondisi awal
-        });
-
-        // Fungsi untuk Download tabel sebagai CSV
-        $('#download-button').on('click', function() {
-            const rows = [];
-            const headers = [];
-
-            // Ambil header tabel
-            $('#data-pesanan-table thead th').each(function() {
-                headers.push($(this).text().trim());
-            });
-            rows.push(headers.join(',')); // Gabung header dengan koma
-
-            // Ambil data baris yang terlihat
-            $('#data-pesanan-table tbody tr:visible').each(function() {
-                const row = [];
-                $(this).find('td').each(function() {
-                    row.push($(this).text().trim());
-                });
-                rows.push(row.join(','));
-            });
-
-            // Buat file CSV
-            const csvContent = 'data:text/csv;charset=utf-8,' + rows.join('\n');
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement('a');
-            link.setAttribute('href', encodedUri);
-            link.setAttribute('download', 'data_table.csv');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        });
-
-        // Event untuk pencarian
-        $('#search-input').on('input', function() {
-            filterTable();
-        });
-
-        // Event untuk filter tanggal
-        $('#filter-date').on('change', function() {
-            filterTable();
-        });
-
-        // Inisialisasi Pagination
-        paginate();
+        <?php if (session()->getFlashdata('success')) : ?>
+        showToast('Success', '<?= session()->getFlashdata('success') ?>');
+        <?php endif ?>
+        <?php if (session()->getFlashdata('error')) : ?>
+        showToast('Error', '<?= session()->getFlashdata('error') ?>');
+        <?php endif ?>
     });
     </script>
     <?=$this->endSection()?>
