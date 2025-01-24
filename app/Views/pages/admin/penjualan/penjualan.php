@@ -265,7 +265,7 @@ $this->section('content');
                     data: formData,
                     success: function(response) {
                         if (response.status === 'success') {
-                            showToast('Success', 'Data Penjualan berhasil disimpan!');
+                            showToast('Success', response.message);
 
                             // Reset form dan tutup modal
                             $('#addOrderModal').modal('hide');
@@ -274,7 +274,7 @@ $this->section('content');
                             // Reload the table data
                             $('#data-penjualan-table').DataTable().ajax.reload();
                         } else {
-                            showToast('Error', 'Terjadi kesalahan saat menyimpan data Penjualan.');
+                            showToast('Error', response.message);
                         }
                         setTimeout(function() {
                             toastSuccess.hide();

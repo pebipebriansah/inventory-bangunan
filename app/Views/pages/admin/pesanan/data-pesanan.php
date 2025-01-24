@@ -237,13 +237,9 @@ $this->section('content');
                                 <label for="nameWithTitle" class="form-label">Nama Barang</label>
                                 <select name="id_barang" id="id_barang" class="form-control">
                                     <option value="#">Silahkan Pilih</option>
-                                    <?php if (!empty($barang)): ?>
                                     <?php foreach($barang as $br): ?>
                                     <option value="<?= $br['id_barang']; ?>"><?= $br['nama_barang']; ?></option>
                                     <?php endforeach; ?>
-                                    <?php else: ?>
-                                    <option value="#" disabled>Stok tidak tersedia untuk pembelian</option>
-                                    <?php endif; ?>
                                 </select>
                             </div>
                             <input type="hidden" name="nama_barang" id="nama_barang">

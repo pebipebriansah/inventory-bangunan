@@ -62,6 +62,7 @@ $this->section('content');
                             <th>ID Barang Masuk</th>
                             <th>Nama Barang</th>
                             <th>Total</th>
+                            <th>Stok</th>
                             <th>Supplier</th>
                             <th>Tanggal Masuk</th>
                         </tr>

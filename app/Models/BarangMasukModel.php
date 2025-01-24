@@ -60,7 +60,8 @@ class BarangMasukModel extends Model
         return $this->builder('tbl_barang_masuk') // Builder untuk tabel barang_masuk
             ->join('tbl_pesanan', 'tbl_barang_masuk.id_pesanan = tbl_pesanan.id_pesanan') // Bergabung dengan tabel tbl_pesanan
             ->join('tbl_supplier', 'tbl_pesanan.id_supplier = tbl_supplier.id_supplier') // Bergabung dengan tabel tbl_supplier
-            ->select('tbl_barang_masuk.id_barang_masuk, tbl_pesanan.nama_barang, tbl_pesanan.total, tbl_supplier.nama_supplier, tbl_barang_masuk.tanggal_masuk') // Kolom yang akan dipilih
+            ->join('tbl_barang', 'tbl_barang_masuk.id_barang = tbl_barang.id_barang')
+            ->select('tbl_barang_masuk.id_barang_masuk, tbl_barang.nama_barang, tbl_pesanan.total, tbl_barang_masuk.stok,  tbl_supplier.nama_supplier, tbl_barang_masuk.tanggal_masuk') // Kolom yang akan dipilih
             ->orderBy('tbl_barang_masuk.tanggal_masuk', 'ASC'); // Mengurutkan berdasarkan tanggal_masuk
     }
 }

@@ -28,9 +28,8 @@ class PesananController extends BaseController
 {
     $data = [
         'title' => 'Data Pesanan',
+        'barang' => $this->barangModel->findAll(),
         'data_pesanan' => $this->pesananModel->join('tbl_supplier', 'tbl_supplier.id_supplier = tbl_pesanan.id_supplier')->findAll(),
-        // Ambil barang yang stoknya dibawah 3
-        'barang' => $this->barangModel->where('stok <', 50)->findAll(),
     ];
     return view($this->pageUtama, $data);
 }
@@ -111,19 +110,6 @@ class PesananController extends BaseController
         }
     }
     public function masuk($id){
-        // Generate ID barang
-        $lastID = $this->barangModel->getLastID();
-        if ($lastID == null) {
-            $incrementId = 1; // Jika tidak ada ID sebelumnya, mulai dari 1
-        } else {
-            // Ambil bagian numerik dari ID
-            $sliceId = substr($lastID, 4); // Mengambil karakter setelah "SUP-"
-            
-            // Pastikan bagian numerik diproses dengan benar
-            $incrementId = intval($sliceId) + 1; // Konversi ke integer dan tambahkan 1
-        }
-        $idBarang = 'BRG-'.str_pad($incrementId, 3, '0', STR_PAD_LEFT);
-
         // Generate ID Barang Masuk
         $lastIDMasuk = $this->barangMasuk->getLastID();
         if ($lastIDMasuk === null) {
@@ -139,26 +125,11 @@ class PesananController extends BaseController
         }
         $idBarangMasuk = 'BRGM-' . str_pad($incrementIdMasuk, 3, '0', STR_PAD_LEFT);
         $data = $this->pesananModel->find($id);
-        $dataBarang = $this->barangModel
-            ->where('nama_barang', $data['nama_barang'])
-            ->where('id_supplier', $data['id_supplier'])
-            ->first(); // Mengambil satu baris data yang sesuai
-        if($dataBarang == true){
-            $dataBarang['stok'] = $dataBarang['stok'] + $data['jumlah'];
-            $this->barangModel->where('nama_barang', $data['nama_barang'])->where('id_supplier', $data['id_supplier'])->set($dataBarang)->update($dataBarang);
-        }else{
-            $dataBarang = [
-                'id_barang' => $idBarang,
-                'nama_barang' => $data['nama_barang'],
-                'id_supplier' => $data['id_supplier'],
-                'harga' => $data['harga'],
-                'stok' => $data['jumlah']
-            ];
-            $this->barangModel->insert($dataBarang);
-        }
         $dataBarangMasuk = [
             'id_barang_masuk' => $idBarangMasuk,
+            'id_barang' => $data['id_barang'],
             'id_pesanan' => $data['id_pesanan'],
+            'stok' => $data['jumlah'],
             'tanggal_masuk' => date('Y-m-d / H:i:s'),
         ];
         $this->barangMasuk->insert($dataBarangMasuk);
