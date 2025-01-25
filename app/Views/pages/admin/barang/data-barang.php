@@ -48,7 +48,6 @@ $this->section('content');
                             <th>No</th>
                             <th>ID Barang</th>
                             <th>Nama Barang</th>
-                            <th>Stok</th>
                             <th>Harga</th>
                             <th>Supplier</th>
                             <th>Actions</th>

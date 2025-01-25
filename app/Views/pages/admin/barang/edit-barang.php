@@ -22,13 +22,6 @@ $this->section('content');
                     <input type="text" id="nama_barang" name="nama_barang" class="form-control"
                         value="<?= esc($barang['nama_barang']) ?>" required>
                 </div>
-
-                <!-- Username -->
-                <div class="mb-3">
-                    <label for="username" class="form-label">Stok</label>
-                    <input type="number" id="stok" name="stok" class="form-control"
-                        value="<?= esc($barang['stok']) ?>" required>
-                </div>
                 <div class="mb-3">
                     <label for="username" class="form-label">Harga</label>
                     <input type="number" id="harga" name="harga" class="form-control"

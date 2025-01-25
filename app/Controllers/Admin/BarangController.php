@@ -83,7 +83,6 @@ class BarangController extends BaseController
     {
         $barangID = $this->request->getPost('id_barang');
         $namaBarang = $this->request->getPost('nama_barang');
-        $stok = $this->request->getPost('stok');
         $harga = $this->request->getPost('harga');
 
         // Cek apakah pengguna ada
@@ -92,7 +91,6 @@ class BarangController extends BaseController
             // Update data pengguna
             $this->barangModel->update($barangID, [
                 'nama_barang' => $namaBarang,
-                'stok' => $stok,
                 'harga' => $harga
             ]);
             return redirect()->to('admin/data-barang')
