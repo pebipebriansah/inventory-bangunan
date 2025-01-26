@@ -13,7 +13,6 @@ class DashboardController extends BaseController
 {    // Kirim data ke view
     $data = [
         'title' => 'Dashboard Admin',
-       
     ];
 
     return view('pages/admin/dashboard_admin', $data);
