@@ -19,6 +19,7 @@ $routes->get('get-total-penjualan/(:any)','Admin\PesananController::getTotalPenj
 $routes->get('getUserById/(:any)','Admin\UserController::getById/$1');
 $routes->get('penjualan-terbanyak','Admin\PenjualanController::getPenjualanTerbanyak');
 $routes->get('stok-hampir-habis','Admin\BarangController::getStokHampirHabis');
+$routes->get('get_chart_data','Admin\DashboardController::getChartData');
 $routes->group('admin',['filter' => 'AuthFilter'], static function ($routes){
     $routes->get('/','Admin\DashboardController::index');
     //data user

@@ -56,6 +56,16 @@ class PenjualanModel extends Model
             return null;
         }
     }
+    public function getSalesData()
+    {
+        return $this->db->table('tbl_penjualan')
+        ->join('tbl_barang', 'tbl_penjualan.id_barang = tbl_barang.id_barang')
+                        ->select('tbl_barang.nama_barang, SUM(tbl_penjualan.qty) as total_sold')
+                        ->groupBy('tbl_barang.nama_barang')
+                        ->orderBy('total_sold', 'DESC')
+                        ->get()
+                        ->getResultArray();
+    }
     public function getTotalPenjualan($id_barang)
     {
         $builder = $this->db->table($this->table);

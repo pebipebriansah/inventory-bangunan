@@ -44,7 +44,54 @@ $this->section('content');
 <!-- Include Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        let ctx = document.getElementById("salesChart").getContext("2d");
+        let salesChart;
 
+        function loadChart(chartType) {
+            $.ajax({
+                url: "<?= base_url('get_chart_data'); ?>",
+                type: "GET",
+                data: { type: chartType },
+                dataType: "json",
+                success: function(response) {
+                    if (salesChart) {
+                        salesChart.destroy();
+                    }
 
+                    salesChart = new Chart(ctx, {
+                        type: "bar",
+                        data: {
+                            labels: response.labels,
+                            datasets: [{
+                                label: chartType === "penjualan" ? "Penjualan Barang" : "Stok Hampir Habis",
+                                data: response.data,
+                                backgroundColor: chartType === "penjualan" ? "rgba(54, 162, 235, 0.5)" : "rgba(255, 165, 0, 0.5)",
+                                borderColor: chartType === "penjualan" ? "rgba(54, 162, 235, 1)" : "rgba(255, 165, 0, 1)",
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+        $(".chart-option").click(function() {
+            let type = $(this).data("type");
+            loadChart(type);
+        });
+
+        loadChart("penjualan");
+    });
+</script>
 <!-- / Content -->
 <?= $this->endSection() ?>

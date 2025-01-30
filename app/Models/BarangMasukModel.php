@@ -64,4 +64,14 @@ class BarangMasukModel extends Model
             ->select('tbl_barang_masuk.id_barang_masuk, tbl_barang.nama_barang, tbl_pesanan.total, tbl_barang_masuk.stok,  tbl_supplier.nama_supplier, tbl_barang_masuk.tanggal_masuk') // Kolom yang akan dipilih
             ->orderBy('tbl_barang_masuk.tanggal_masuk', 'ASC'); // Mengurutkan berdasarkan tanggal_masuk
     }
+    public function getLowStockData($threshold = 10)
+    {
+        return $this->db->table('tbl_barang_masuk')
+        ->join('tbl_barang', 'tbl_barang_masuk.id_barang = tbl_barang.id_barang')
+                        ->select('tbl_barang.nama_barang, tbl_barang_masuk.stok')
+                        ->where('stok <=', $threshold)
+                        ->orderBy('stok', 'ASC')
+                        ->get()
+                        ->getResultArray();
+    }
 }
