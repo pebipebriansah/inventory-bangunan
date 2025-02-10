@@ -33,8 +33,8 @@ $this->section('content');
     </div>
     <?php endif;?>
     <div class="card">
-        <h5 class="card-header">
-            <span>Data Barang Masuk</span>
+        <h5 class="card-header d-flex justify-content-between align-items-center">
+            <span>Data Barang Keluar</span>
         </h5>
         <div class="card-body">
             <div class="row g-2 align-items-center mb-3">
@@ -47,7 +47,6 @@ $this->section('content');
                         <option value="1week">1 Minggu</option>
                         <option value="1month">1 Bulan</option>
                     </select>
-
                 </div>
                 <div class="col-auto">
                     <button id="printButton" class="btn btn-success btn-sm">Print</button>
@@ -59,14 +58,62 @@ $this->section('content');
                     <thead class="thead-dark">
                         <tr>
                             <th>No</th>
-                            <th>ID Barang Keluar</th>
                             <th>Nama Barang</th>
                             <th>Jumlah</th>
-                            <th>Total</th>
                             <th>Tanggal Keluar</th>
                         </tr>
                     </thead>
                 </table>
+                <div class="mt-3">
+                    <p style="text-align: justify;">
+                        <strong>Catatan:</strong> Data yang ditampilkan dalam tabel ini menggunakan metode <em>First In,
+                            First Out</em> (FIFO).
+                        Metode ini digunakan untuk memastikan barang yang lebih dulu masuk akan lebih dulu dikeluarkan.
+                        Hal ini bertujuan untuk menghindari penumpukan barang lama, menjaga kualitas produk, serta
+                        mencegah risiko
+                        barang kedaluwarsa atau rusak akibat penyimpanan yang terlalu lama.
+                    </p>
+                </div>
+            </div>
+            <div class="modal fade" id="addOrderModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <form id="addOrderForm" method="POST">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalCenterTitle">Tambah Data</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col mb-3">
+                                        <label for="id_barang" class="form-label">Nama Barang</label>
+                                        <select name="id_barang" id="id_barang" class="form-control">
+                                            <option value="#">Silahkan Pilih</option> <!-- Tetap di atas -->
+                                            <?php foreach($barang as $br) : ?>
+                                            <option value="<?= $br['id_barang'] ?>" data-harga="<?=$br['harga']?>">
+                                                <?= $br['nama_barang'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row g-2">
+                                    <div class="col mb-0">
+                                        <label class="form-label">Jumlah</label>
+                                        <input type="text" name="jumlah" id="jumlah" class="form-control"
+                                            placeholder="Masukan Jumlah" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                    Close
+                                </button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -203,5 +250,69 @@ $this->section('content');
         });
     });
     </script>
+    <script>
+    $(document).ready(function() {
+        $('#addOrderForm').on('submit', function(e) {
+            e.preventDefault();
 
+            var form = $(this);
+            if (form[0].checkValidity() === false) {
+                e.stopPropagation();
+                form.addClass('was-validated');
+                return;
+            }
+            var formData = form.serialize(); // Ambil data form
+
+            $.ajax({
+                url: "<?= base_url('admin/barang-keluar/save');?>",
+                type: "POST",
+                data: formData,
+                dataType: "json",
+                beforeSend: function() {
+                    console.log("Mengirim data...");
+                },
+                success: function(response) {
+                    console.log(response); // Debugging response
+                    if (response.status === "success") {
+                        showToast("Success", response.message);
+
+                        // Reset form & tutup modal
+                        $('#addOrderModal').modal('hide');
+                        form[0].reset();
+                        form.removeClass('was-validated');
+
+                        // Reload DataTable
+                        $('#data-barang-keluar-table').DataTable().ajax.reload();
+                    } else {
+                        showToast("Error", response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    alert("Terjadi kesalahan: " + error);
+                }
+            });
+        });
+    });
+
+    function showToast(type, message) {
+        var toastType = type.toLowerCase();
+        var toastElement = $('#' + toastType + 'Toast');
+        toastElement.find('.toast-header strong').text(type);
+        toastElement.find('.toast-body').text(message);
+        var toast = new bootstrap.Toast(toastElement[0]);
+        toast.show();
+
+        setTimeout(function() {
+            toast.hide();
+        }, 2000); // Hide after 2 seconds
+    }
+    $(document).ready(function() {
+        <?php if (session()->getFlashdata('success')) : ?>
+        showToast('Success', '<?= session()->getFlashdata('success') ?>');
+        <?php endif ?>
+        <?php if (session()->getFlashdata('error')) : ?>
+        showToast('Error', '<?= session()->getFlashdata('error') ?>');
+        <?php endif ?>
+    });
+    </script>
     <?=$this->endSection()?>

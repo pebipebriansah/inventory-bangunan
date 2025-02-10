@@ -74,4 +74,11 @@ class BarangMasukModel extends Model
                         ->get()
                         ->getResultArray();
     }
+    public function getBarangMasukFIFO()
+    {
+        return $this->select('tbl_barang_masuk.*, tbl_barang.nama_barang, tbl_barang.harga')
+            ->join('tbl_barang', 'tbl_barang.id_barang = tbl_barang_masuk.id_barang')
+            ->orderBy('tbl_barang_masuk.tanggal_masuk', 'ASC') // FIFO: Urutan dari yang paling lama masuk
+            ->findAll();
+    }
 }

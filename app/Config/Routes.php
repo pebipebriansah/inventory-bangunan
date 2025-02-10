@@ -33,9 +33,11 @@ $routes->group('admin',['filter' => 'AuthFilter'], static function ($routes){
     //barang masuk
     $routes->get('barang-masuk','Admin\BarangMasukController::index');
     $routes->post('barang-masuk/get-barang-masuk','Admin\BarangMasukController::getBarangMasuk');
+    $routes->post('barang-masuk/keluar/(:any)','Admin\BarangMasukController::keluar/$1');
 
     $routes->get('barang-keluar','Admin\BarangKeluarController::index');
     $routes->post('barang-keluar/get-barang-keluar','Admin\BarangKeluarController::getBarangKeluar');
+    $routes->post('barang-keluar/save','Admin\BarangKeluarController::save');
     //data barang
     $routes->get('data-barang','Admin\BarangController::index');
     $routes->post('data-barang/get-barang','Admin\BarangController::getBarang');

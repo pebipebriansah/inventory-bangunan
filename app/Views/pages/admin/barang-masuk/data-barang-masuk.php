@@ -7,31 +7,28 @@ $this->section('content');
 ?>
 <!-- Content -->
 <div class="container-xxl flex-grow-1 container-p-y">
-    <!-- Basic Bootstrap Table -->
-    <?php if (session()->getFlashdata('success')) : ?>
-    <div class="bs-toast toast fade show bg-primary" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast" id="successToast" role="alert" aria-live="assertive" aria-atomic="true"
+        style="position: fixed; top: 20px; right: 20px; z-index: 9999;">
         <div class="toast-header">
-            <i class="bx bx-bell me-2"></i>
-            <div class="me-auto fw-semibold">Success</div>
-            <small id="toast-timestamp"><?= date('H:i:s'); ?></small>
+            <strong class="me-auto">Success</strong>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
         <div class="toast-body">
-            <?= session()->getFlashdata('success'); ?></div>
+            Data Penjualan berhasil disimpan!
+        </div>
     </div>
-    <?php endif; ?>
-    <?php if (session()->getFlashdata('error')) : ?>
-    <div class="bs-toast toast fade show bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
+
+    <!-- Toast Error -->
+    <div class="toast" id="errorToast" role="alert" aria-live="assertive" aria-atomic="true"
+        style="position: fixed; top: 20px; right: 20px; z-index: 9999;">
         <div class="toast-header">
-            <i class="bx bx-bell me-2"></i>
-            <div class="me-auto fw-semibold">Error</div>
-            <small id="toast-timestamp"><?= date('H:i:s'); ?></small>
+            <strong class="me-auto">Error</strong>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
         <div class="toast-body">
-            <?= session()->getFlashdata('error'); ?></div>
+            Terjadi kesalahan saat menyimpan data Penjualan.
+        </div>
     </div>
-    <?php endif; ?>
     <div class="card">
         <h5 class="card-header">
             <span>Data Barang Masuk</span>
@@ -59,15 +56,45 @@ $this->section('content');
                     <thead class="thead-dark">
                         <tr>
                             <th>No</th>
-                            <th>ID Barang Masuk</th>
+                            <th>ID Barang</th>
                             <th>Nama Barang</th>
                             <th>Total</th>
                             <th>Stok</th>
                             <th>Supplier</th>
                             <th>Tanggal Masuk</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                 </table>
+            </div>
+            <div class="mt-3">
+                <p style="text-align: justify;"><strong>Catatan:</strong> <br>Data yang ditampilkan dalam tabel ini menggunakan metode <em>First In,
+                        First Out</em> (FIFO).
+                    Metode ini merekomendasikan pengeluaran barang berdasarkan urutan masuknya, yaitu barang yang lebih
+                    dulu masuk
+                    akan didahulukan untuk dikeluarkan. Hal ini bertujuan untuk menjaga kualitas barang serta
+                    menghindari risiko
+                    barang kadaluarsa atau mengalami penurunan kualitas akibat penyimpanan terlalu lama.</p>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal fade" id="keluarkanModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Keluarkan Barang</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="keluarkanForm" method="POST">
+                        <input type="hidden" id="keluarBarangId" name="barang_id">
+                        <input type="text" id="jumlah" name="jumlah" class="form-control">
+                        <br>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-danger">Keluarkan</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -177,7 +204,7 @@ $this->section('content');
                 return `
                     <tr>
                         <td>${index + 1}</td>
-                        <td>${row[0] || 'N/A'}</td> 
+                        <td>${row[1] || 'N/A'}</td> 
                         <td>${row[2] || 'N/A'}</td> 
                         <td>${row[3] || 'N/A'}</td>
                         <td>${row[4] || 'N/A'}</td> 
@@ -195,6 +222,75 @@ $this->section('content');
             printWindow.document.close();
             printWindow.print();
         });
+    });
+    </script>
+    <script>
+    $(document).on('submit', '#keluarkanForm', function(e) {
+        e.preventDefault(); // Mencegah pengiriman form default
+
+        var jumlah = $('#jumlah').val();
+        if (isNaN(jumlah) || jumlah <= 0) {
+            showToast('Error', 'Jumlah barang yang dikeluarkan tidak valid.');
+            return;
+        }
+
+        var form = $(this);
+        var url = form.attr('action');
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: form.serialize(),
+            dataType: 'json', // Pastikan respons diproses sebagai JSON
+            success: function(response) {
+                console.log("Response dari server:", response); // Debugging
+
+                if (response.status === 'success') {
+                    showToast('success', response.message);
+                    $('#keluarkanModal').modal('hide');
+                    $('#data-barang-masuk-table').DataTable().ajax.reload();
+                } else {
+                    showToast('error', response.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("AJAX Error:", xhr.responseText); // Debugging error
+                showToast('error', 'Terjadi kesalahan dalam mengeluarkan barang!');
+            }
+        });
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+        $('#keluarkanModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var userId = button.data('user-id') // Extract info from data-* attributes
+            var modal = $(this)
+            modal.find('.modal-header').text('Apakah Anda yakin ingin mengeluarkan barang dengan ID ' +
+                userId + '?')
+            modal.find('form').attr('action', 'barang-masuk/keluar/' + userId);
+        });
+    });
+
+    function showToast(type, message) {
+        var toastType = type.toLowerCase();
+        var toastElement = $('#' + toastType + 'Toast');
+        toastElement.find('.toast-header strong').text(type);
+        toastElement.find('.toast-body').text(message);
+        var toast = new bootstrap.Toast(toastElement[0]);
+        toast.show();
+
+        setTimeout(function() {
+            toast.hide();
+        }, 2000); // Hide after 2 seconds
+    }
+    $(document).ready(function() {
+        <?php if (session()->getFlashdata('success')) : ?>
+        showToast('Success', '<?= session()->getFlashdata('success') ?>');
+        <?php endif ?>
+        <?php if (session()->getFlashdata('error')) : ?>
+        showToast('Error', '<?= session()->getFlashdata('error') ?>');
+        <?php endif ?>
     });
     </script>
     <?= $this->endSection() ?>
